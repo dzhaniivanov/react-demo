@@ -1,9 +1,13 @@
 import CategoryNavigation from './CategoryNavigation/CategoryNavigation';
-const Categories = () => {
+const Categories = (
+    match
+) => {
     return (
         <section className="dashboard">
             <h1>Dashboard</h1>
-            <CategoryNavigation/>
+
+            <CategoryNavigation />
+
             <ul className="other-pets-list">
                 <li className="otherPet">
                     <h3>Name: Gosho</h3>
