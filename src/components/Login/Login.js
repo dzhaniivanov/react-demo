@@ -1,5 +1,5 @@
 import { auth } from '../../utils/firebase';
-function Login() {
+function Login({history}) {
 
     const onLoginSubmitHandler = (e) => {
         e.preventDefault();
@@ -10,7 +10,7 @@ function Login() {
 
         auth.signInWithEmailAndPassword(username, password)
             .then((user) => {
-                console.log(user);
+                history.push('/');
             })
     }
 

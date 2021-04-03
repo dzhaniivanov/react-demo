@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 
 import './App.css';
 import Header from './components/Header/Header';
@@ -28,22 +28,29 @@ function App() {
     auth.onAuthStateChanged(setUser)
   }, [])
 
+  const authInfo = {
+    isAuth: Boolean(user),
+    username: user?.email,
+  }
+
 
   return (
     <div className="container">
-      <Header />
+      <Header {...authInfo} />
+
       <Switch>
-        <Route path="/" exact component={Categories} />
-        <Route path="/categories/:category" component={Categories} />
-        <Route path="/pets/details/:petId" exact component={PetDetails} />
-        <Route path="/pets/details/:petId/edit" component={EditPetDetails} />
-        <Route path="/pets/create" component={CreatePet} />
-        <Route path="/demo" component={Demo} />
-        <Route path="/login" component={Login} />
-        <Route path="/register" component={Register} />
+        <Route path="/" exact render={props => <Categories {...props} {...authInfo} />} />
+        <Route path="/categories/:category" render={props => <Categories{...props}  {...authInfo} />} />
+        <Route path="/pets/details/:petId" exact render={props => <PetDetails {...props} {...authInfo} />} />
+        <Route path="/pets/details/:petId/edit" render={props => <EditPetDetails{...props} {...authInfo} />} />
+        <Route path="/pets/create" render={props => <CreatePet{...props} {...authInfo} />} />
+        <Route path="/demo" render={props => <Demo{...props} {...authInfo} />} />
+        <Route path="/login" render={props => <Login {...props}  {...authInfo} />} />
+        <Route path="/register" render={props => <Register{...props} {...authInfo} />} />
 
         <Route path="/logout" render={props => {
-          auth.signOut()
+          auth.signOut();
+          return <Redirect to="/" />
         }} />
 
 
