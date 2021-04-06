@@ -11,6 +11,9 @@ import EditPetDetails from './components/EditPetDetails/EditPetDetails';
 import Login from './components/Login/Login';
 import Register from './components/Register/Register';
 
+import AdvancedTechniques from './components/AdvancedTechniques/AdvancedTechniques';
+
+
 
 import Demo from './components/Shared/Demo';
 import { auth } from './utils/firebase';
@@ -47,6 +50,9 @@ function App() {
         <Route path="/demo" render={props => <Demo{...props} {...authInfo} />} />
         <Route path="/login" render={props => <Login {...props}  {...authInfo} />} />
         <Route path="/register" render={props => <Register{...props} {...authInfo} />} />
+
+        <Route path="/advanced" component={AdvancedTechniques} />
+
 
         <Route path="/logout" render={props => {
           auth.signOut();
