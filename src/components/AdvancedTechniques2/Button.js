@@ -4,12 +4,12 @@ function Button({
 }) {
     return (
         <ThemeContext.Consumer>
-            {([theme]) =>
+            {values =>
                 <button
                     onClick={buttonClickHandler}
-                    style={{ backgroundColor: theme == 'dark' ? 'darkgray' : 'lightgreen' }}
+                    style={{ backgroundColor: values.theme == 'dark' ? 'darkgray' : 'lightgreen' }}
                 >
-                    {theme}
+                    {values.theme}
                 </button>
             }
         </ThemeContext.Consumer>

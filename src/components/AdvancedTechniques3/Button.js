@@ -9,7 +9,7 @@ function Button({
                     onClick={buttonClickHandler}
                     style={{ backgroundColor: theme == 'dark' ? 'darkgray' : 'lightgreen' }}
                 >
-                    {theme}
+                    {theme.color}
                 </button>
             }
         </ThemeContext.Consumer>

@@ -5,10 +5,10 @@ import ButtonHeader from './ButtonHeader';
 import ThemeContext from './ThemeContext';
 
 const ThemedButton = () => {
-    const [theme, setTheme] = useContext(ThemeContext);
+    const [theme, dispatch] = useContext(ThemeContext);
 
     const onChangeThemeClickHandler = () => {
-        setTheme(oldState =>oldState == 'dark' ? 'light' : 'dark' )
+        dispatch({type:'TOGGLE_COLOR'});
     }
 
 

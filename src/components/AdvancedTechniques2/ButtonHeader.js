@@ -4,7 +4,7 @@ import ThemeContext from './ThemeContext';
 const ButtonHeader = ({
 
 }) => {
-    const [theme] = useContext(ThemeContext);
+    const { theme } = useContext(ThemeContext);
 
     return (
         <header style={{ color: theme == 'dark' ? 'darkgray' : 'lightgreen' }}>

@@ -12,6 +12,10 @@ import Login from './components/Login/Login';
 import Register from './components/Register/Register';
 
 import AdvancedTechniques from './components/AdvancedTechniques/AdvancedTechniques';
+import AdvancedTechniques2 from './components/AdvancedTechniques2/AdvancedTechniques2';
+import AdvancedTechniques3 from './components/AdvancedTechniques3/AdvancedTechniques3';
+
+
 
 
 
@@ -52,6 +56,10 @@ function App() {
         <Route path="/register" render={props => <Register{...props} {...authInfo} />} />
 
         <Route path="/advanced" component={AdvancedTechniques} />
+        <Route path="/advanced2" component={AdvancedTechniques2} />
+        <Route path="/advanced3" component={AdvancedTechniques3} />
+
+
 
 
         <Route path="/logout" render={props => {
