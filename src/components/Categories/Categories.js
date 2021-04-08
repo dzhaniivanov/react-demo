@@ -21,6 +21,8 @@ class Categories extends Component {
         petService.getAll()
             .then(res => this.setState({ pets: res }))
 
+        
+
     }
 
     componentDidUpdate(prevProps) {
