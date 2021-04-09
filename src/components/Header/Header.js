@@ -1,12 +1,13 @@
 import { Link } from 'react-router-dom';
 import { auth } from '../../utils/firebase';
-import { useEffect } from 'react';
-const Header = ({
-    isAuth,
-    username
-}) => {
+import { useContext, useEffect } from 'react';
+import AuthContext from '../../contexts/AuthContext';
+
+
+const Header = () => {
+    const { isAuthenticated, username } = useContext(AuthContext);
     useEffect(() => {
-        if (!isAuth) {
+        if (!isAuthenticated) {
             return
         }
         auth.currentUser.getIdToken()
@@ -22,7 +23,7 @@ const Header = ({
             .then(data => {
                 console.log(data);
             })
-    }, [isAuth])
+    }, [isAuthenticated])
     return (
         <header id="site-header">
             <nav className="navbar">
@@ -35,7 +36,7 @@ const Header = ({
                     <div className="second-bar">
                         <ul>
                             {
-                                isAuth
+                                isAuthenticated
                                     ? <li>Welcome, {username}!</li>
                                     : <li>Welcome guest</li>
                             }

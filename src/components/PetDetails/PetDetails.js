@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import * as petService from '../../services/petService';
 import { Link } from 'react-router-dom';
+
+
 const PetDetails = ({
     match
 }) => {

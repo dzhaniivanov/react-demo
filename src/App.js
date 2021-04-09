@@ -23,7 +23,7 @@ import AdvancedTechniques3 from './components/AdvancedTechniques3/AdvancedTechni
 
 import Demo from './components/Shared/Demo';
 import { auth } from './utils/firebase';
-import AuthContext from './components/contexts/AuthContext';
+import AuthContext from './contexts/AuthContext';
 import isAuth from './hoc/isAuth';
 
 
@@ -40,7 +40,7 @@ function App() {
   }, [])
 
   const authInfo = {
-    isAuth: Boolean(user),
+    isAuthenticated: Boolean(user),
     username: user?.email,
   }
 
@@ -48,41 +48,34 @@ function App() {
   return (
     <div className="container">
       <AuthContext.Provider value={authInfo}>
-        <Header {...authInfo} />
+        <Header />
 
 
         <CustomErrorBoundary>
 
-
           <Switch>
-            <Route path="/" exact render={props => <Categories {...props} {...authInfo} />} />
-            <Route path="/categories/:category" render={props => <Categories{...props}  {...authInfo} />} />
-            <Route path="/pets/details/:petId" exact render={props => <PetDetails {...props} {...authInfo} />} />
-            <Route path="/pets/details/:petId/edit" render={props => <EditPetDetails{...props} {...authInfo} />} />
-            <Route path="/pets/create" render={props => <CreatePet{...props} {...authInfo} />} />
-            <Route path="/demo" render={props => <Demo{...props} {...authInfo} />} />
-            <Route path="/login" render={props => <Login {...props}  {...authInfo} />} />
-            <Route path="/register" render={props => <Register{...props} {...authInfo} />} />
+            <Route path="/" exact component={Categories} />
+            <Route path="/categories/:category" component={Categories} />
+            <Route path="/pets/details/:petId" exact component={PetDetails} />
+            <Route path="/pets/details/:petId/edit" component={isAuth(EditPetDetails)} />
+            <Route path="/pets/create" component={CreatePet} />
+            <Route path="/demo" component={Demo} />
+            <Route path="/login" component={Login} />
+            <Route path="/register" component={Register} />
 
             <Route path="/advanced" component={AdvancedTechniques} />
             <Route path="/advanced2" component={AdvancedTechniques2} />
             <Route path="/advanced3" component={AdvancedTechniques3} />
 
-
-
-
             <Route path="/logout" render={props => {
               auth.signOut();
               return <Redirect to="/" />
             }} />
-
-
-
-
           </Switch>
+
         </CustomErrorBoundary>
-      </AuthContext.Provider >
-      <Footer />
+        <Footer />
+      </AuthContext.Provider>
     </div>
   );
 }
