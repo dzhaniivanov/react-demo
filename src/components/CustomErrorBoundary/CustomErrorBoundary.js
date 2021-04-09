@@ -16,8 +16,9 @@ class CustomErrorBoundary extends Component {
     }
 
     componentDidCatch(error, errorInfo) {
-        console.log(`error from componentdidcatch`, error);
+        console.log('error from componentdidcatch', error);
     }
+
     render() {
         if (this.state.hasError) {
             return <h1>some error here</h1>

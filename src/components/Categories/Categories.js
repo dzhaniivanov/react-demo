@@ -21,7 +21,7 @@ class Categories extends Component {
         petService.getAll()
             .then(res => this.setState({ pets: res }))
 
-        
+
 
     }
 
@@ -36,12 +36,15 @@ class Categories extends Component {
             })
 
     }
-    // const [pets, setPets] = useState([]);
-    /*    useEffect(() => {
-           fetch('http://localhost:5000/pets')
-               .then(res => res.json())
-               .then(res => setPets(res))
-       }, []) */
+    onPetButtonClickHandler(petId, likes) {
+        petService.pet(petId, likes + 1)
+            .then(() => {
+                this.setState(state => ({ pets: state.pets.map(x => x.id == petId ? { ...x, likes: x.likes + 1 } : x) }))
+
+            })
+
+    }
+
 
     render() {
         return (
@@ -55,6 +58,7 @@ class Categories extends Component {
                         <Pet
                             key={x.id}
                             {...x}
+                            onPetButtonClickHandler={this.onPetButtonClickHandler.bind(this, x.id, x.likes)}
                         />
                     )}
 
